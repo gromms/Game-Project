@@ -43,7 +43,6 @@ while True:
 	tile_pos_y = mouse_posy // tile_size
 	
 	tile = pygame.Rect(mouse_posx, mouse_posy, tile_size, tile_size)
-	#pygame.draw.rect(screen, (0, 0, 0), tile)
 
 	event = pygame.event.poll()
 
