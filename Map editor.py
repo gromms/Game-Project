@@ -10,11 +10,17 @@ screen = pygame.display.set_mode((screen_x, screen_y))
 screen.fill((255, 255, 255))
 pygame.display.set_caption('Map Editor')
 
+imageRaw = pygame.image.load('./Imgs/_.jpg').convert()
+image = pygame.transform.scale(imageRaw, (tile_size, tile_size))
+
+print(image.get_rect())
+
 rectPos = []
 mapList = []
 color_dict = {}
 
-elements = ['X', 'S', 'O']
+elements = ['X', 'S', 'O', '_']
+images = {'_' : image}
 num = 0
 
 colors = [['red', (255, 0, 0)], ['green', (0, 255, 0)], ['blue', (0, 0, 255)], ['black', (0, 0, 0, 255)]]
@@ -45,7 +51,7 @@ while True:
 	tile = pygame.Rect(mouse_posx, mouse_posy, tile_size, tile_size)
 
 	event = pygame.event.poll()
-
+	
 	for rects in rectPos:
 		if rects[2] == 'X':
 			pygame.draw.rect(screen, color_dict['black'], rects[0])
@@ -53,9 +59,12 @@ while True:
 			pygame.draw.rect(screen, color_dict['red'], rects[0])
 		elif rects[2] == 'O':
 			pygame.draw.rect(screen, color_dict['green'], rects[0])
+		elif rects[2] == '_':
+			screen.blit(image, rects[0])
 
 	if event.type == pygame.QUIT:
 		break
+
 	elif event.type == pygame.MOUSEBUTTONDOWN:
 		if pygame.mouse.get_pressed()[0] or pygame.mouse.get_pressed()[1]:
 			element = elements[num]
@@ -70,7 +79,6 @@ while True:
 				rectPos.append([rect, (tile_pos_x, tile_pos_y), element])
 
 			#mapList[tile_pos_y][tile_pos_x] = 'X'
-
 			print(rectPos)
 		elif pygame.mouse.get_pressed()[2]:
 			for i in range(0, len(rectPos)):
@@ -78,6 +86,7 @@ while True:
 					rectPos.remove(rectPos[i])
 					break
 			print(rectPos)
+	
 	elif event.type == pygame.KEYDOWN:
 		if event.key == pygame.K_s:
 			f = open('map_name.txt', 'w')
@@ -107,6 +116,7 @@ while True:
 			if num < len(elements) - 1:
 				num += 1
 				print(elements[num])
+	
 	pygame.display.update()
 	#print(tile)
 	
