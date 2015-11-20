@@ -1,4 +1,5 @@
 import pygame
+import os
 
 pygame.init()
 
@@ -10,10 +11,15 @@ screen = pygame.display.set_mode((screen_x, screen_y))
 screen.fill((255, 255, 255))
 pygame.display.set_caption('Map Editor')
 
-imageRaw = pygame.image.load('./Imgs/_.jpg').convert()
-image = pygame.transform.scale(imageRaw, (tile_size, tile_size))
+sprites = {}
 
-print(image.get_rect())
+for i in os.listdir('./Imgs/'):
+	imageRaw = pygame.image.load('./Imgs/' + i).convert()
+	image = pygame.transform.scale(imageRaw, (tile_size, tile_size))
+	sprites[i[0]] = image
+
+print(sprites)
+#print(image.get_rect())
 
 rectPos = []
 mapList = []
@@ -60,7 +66,7 @@ while True:
 		elif rects[2] == 'O':
 			pygame.draw.rect(screen, color_dict['green'], rects[0])
 		elif rects[2] == '_':
-			screen.blit(image, rects[0])
+			screen.blit(sprites['_'], rects[0])
 
 	if event.type == pygame.QUIT:
 		break
