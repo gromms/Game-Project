@@ -25,8 +25,8 @@ rectPos = []
 mapList = []
 color_dict = {}
 
-elements = ['X', 'S', 'O', '_']
-images = {'_' : image}
+elements = ['X', 'S', 'O', 'G']
+images = {'G' : image}
 num = 0
 
 colors = [['red', (255, 0, 0)], ['green', (0, 255, 0)], ['blue', (0, 0, 255)], ['black', (0, 0, 0, 255)]]
@@ -65,8 +65,8 @@ while True:
 			pygame.draw.rect(screen, color_dict['red'], rects[0])
 		elif rects[2] == 'O':
 			pygame.draw.rect(screen, color_dict['green'], rects[0])
-		elif rects[2] == '_':
-			screen.blit(sprites['_'], rects[0])
+		elif rects[2] == 'G':
+			screen.blit(sprites['G'], rects[0])
 
 	if event.type == pygame.QUIT:
 		break
@@ -95,7 +95,7 @@ while True:
 	
 	elif event.type == pygame.KEYDOWN:
 		if event.key == pygame.K_s:
-			f = open('map_name.txt', 'w')
+			f = open('mapName.txt', 'w')
 			for y in range(0, len(mapList)):
 				for x in range(0, len(mapList[y])):
 					default = False

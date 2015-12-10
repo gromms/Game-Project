@@ -30,8 +30,6 @@ def findPath(mapList, start, finish):
 	while len(queue) > 0:
 		i = queue.pop(0)
 		checked.add(i)
-
-
 		if i[0] == start[0] and i[1] == start[1]:
 			break
 		for adj in findAdj(i):
