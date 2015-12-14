@@ -45,18 +45,9 @@ def findPath(mapList, start, finish):
 		path.append(currPoint)
 	return path
 
-def pathfinding(mapName=None, mapList=None, start=None, finish=None):
-	if mapName and not mapList:
-		mapList = createMapList(mapName)
-		if not start:
-			start = findLoc(mapList, 'S')
-		if not finish:
-			finish = findLoc(mapList, 'O')
-	elif not mapName and mapList:
-		if not start:
-			start = findLoc(mapList, 'S')
-		if not finish:
-			finish = findLoc(mapList, 'O')
-	else:
-		return('Wrong parameters given.')
+def pathfinding(mapList, start, finish):
+	if isinstance(start, str):
+		start = findLoc(mapList, start)
+	elif isinstance(finish, str):
+		finish = findLoc(mapList, finish)
 	return findPath(mapList, start, finish)
