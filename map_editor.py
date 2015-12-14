@@ -1,6 +1,7 @@
 import pygame
 import os
 
+#
 #pygame.init()
 
 def mapEditor(screen_x, screen_y, screen):
