@@ -1,5 +1,6 @@
 import pygame
 import os
+import sys
 from map_editor import *
 import case_handler as ch
 
@@ -49,6 +50,7 @@ class Title_Menu(pygame.font.Font):
                 if pygame.mouse.get_pressed()[0]:
                     if Title_Menu_Item == "Quit":
                         pygame.quit()
+                        sys.exit()
                     elif Title_Menu_Item == "Continue":
                         print("Continue")
                     elif Title_Menu_Item == "New Game":
@@ -102,7 +104,7 @@ class Game_Menu(pygame.font.Font):
                 self.Game_Menu = self.Game_Menu_Font.render("▶" + Game_Menu_Item[1:], 1, self.white)
                 if pygame.mouse.get_pressed()[0]:
                     if Game_Menu_Item == " Quit":
-                        pygame.quit()
+                        self.case.update(ch.updateDict(self.case, 'Game Menu'))
                     elif Game_Menu_Item == " Options":
                         print("Options")
                         

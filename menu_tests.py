@@ -37,7 +37,7 @@ while running:
         Game_Menu.draw()
 
     if case['Map Editor'] == True:
-        print('me')
+        #print('me')
         Map_Editor.main()
         case.update(ch.updateDict(case, 'Title Menu'))
 
