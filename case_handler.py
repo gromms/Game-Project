@@ -3,10 +3,10 @@ def updateDict(case, obj):
 
     newCase = {}
     for i in case:
-        #print(i)
+        print(i)
         if i != obj:
             newCase[i] = False
         elif i == obj:
             newCase[i] = True
-    #print(newCase)
+    print(newCase)
     return newCase

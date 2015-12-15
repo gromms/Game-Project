@@ -57,7 +57,7 @@ class Map_Editor():
 			mapList.append([])
 			for j in range(0, self.screen_x // self.tile_size):
 				mapList[i].append('_')
-		print(mapList)
+		#print(mapList)
 
 		pygame.display.flip()
 
@@ -105,13 +105,13 @@ class Map_Editor():
 						rectPos.append([rect, (tile_pos_x, tile_pos_y), element])
 
 					#mapList[tile_pos_y][tile_pos_x] = 'X'
-					print(rectPos)
+					#print(rectPos)
 				elif pygame.mouse.get_pressed()[2]:
 					for i in range(0, len(rectPos)):
 						if rectPos[i][1] == (tile_pos_x, tile_pos_y):
 							rectPos.remove(rectPos[i])
 							break
-					print(rectPos)
+					#print(rectPos)
 			
 			elif event.type == pygame.KEYDOWN:
 				if event.key == pygame.K_s:
@@ -137,11 +137,11 @@ class Map_Editor():
 				elif event.key == pygame.K_LEFT:
 					if num > 0:
 						num -= 1
-						print(elements[num])
+						#print(elements[num])
 				elif event.key == pygame.K_RIGHT:
 					if num < len(elements) - 1:
 						num += 1
-						print(elements[num])
+						#print(elements[num])
 				elif event.key == pygame.K_ESCAPE:
 					self.screen.fill((255,255,255))
 					return 1
