@@ -20,12 +20,14 @@ class Map_Editor():
 	def main(self):
 		self.sprites = maps.Map_Handler.loadImgs(self)
 
+		print(self.sprites)
+
 		rectPos = []
 		mapList = []
 		color_dict = {}
 
 		elements = ['X', 'S', 'O', 'G']
-		self.images = {'G' : self.image}
+		#self.images = {'G' : self.image}
 		num = 0
 
 		colors = [['red', (255, 0, 0)], ['green', (0, 255, 0)], ['blue', (0, 0, 255)], ['black', (0, 0, 0, 255)]]
