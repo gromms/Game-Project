@@ -4,6 +4,7 @@ from pygame.locals import *
 from menu_objects import *
 import map_editor
 import case_handler as ch
+from monster_objects import *
 
 pygame.init()
 
@@ -25,6 +26,7 @@ case = {
 Title_Menu = Title_Menu(screen, case)
 Game_Menu = Game_Menu(screen, case)
 Map_Editor = Map_Editor(screen, screen_x, screen_y)
+Mob_Slime = Mob_Slime(screen)
 
 running = True
 
@@ -32,6 +34,7 @@ while running:
 
     if case['Title Menu'] == True:
         Title_Menu.draw()
+        Mob_Slime.loadImgs()
 
     if case['Game Menu'] == True:
         Game_Menu.draw()
@@ -40,6 +43,8 @@ while running:
         #print('me')
         Map_Editor.main()
         case.update(ch.updateDict(case, 'Title Menu'))
+
+
 
     for event in pygame.event.get():
 
