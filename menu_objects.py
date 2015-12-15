@@ -1,4 +1,6 @@
 import pygame
+import os
+from map_editor import *
 
 class Title_Menu(pygame.font.Font):
 
@@ -6,12 +8,20 @@ class Title_Menu(pygame.font.Font):
 
         self.screen = screen
 
+        self.screen_x = 800
+        self.screen_y = 600
+
+        self.screen = pygame.display.set_mode((self.screen_x, self.screen_y))
+        self.screen.fill((255,255,255))
+
         self.Title_Title_Font = pygame.font.Font("menu_font.ttf", 60)
         self.Title_Menu_Font = pygame.font.Font("menu_font.ttf", 30)
 
         self.red = (255, 0 , 0)
         self.blue = (0, 0, 255)
         self.black = (0, 0, 0)
+
+
 
         self.Title_Title = self.Title_Title_Font.render("menu test", 1, self.black)
 
@@ -22,7 +32,7 @@ class Title_Menu(pygame.font.Font):
         self.Title_Menu_Items = {
         "Continue": (self.Title_Menu_Item_x, self.Title_Menu_Item_y), 
         "New Game": (self.Title_Menu_Item_x, self.Title_Menu_Item_y + self.Title_Menu_Item_y_spacer), 
-        "Level Editor": (self.Title_Menu_Item_x, self.Title_Menu_Item_y + 2* self.Title_Menu_Item_y_spacer), 
+        "Level Editor": (self.Title_Menu_Item_x, self.Title_Menu_Item_y + 2* self.Title_Menu_Item_y_spacer),
         "Quit": (self.Title_Menu_Item_x, self.Title_Menu_Item_y + 3* self.Title_Menu_Item_y_spacer)
         }
 
@@ -36,19 +46,21 @@ class Title_Menu(pygame.font.Font):
                 if pygame.mouse.get_pressed()[0]:
                     if Title_Menu_Item == "Quit":
                         pygame.quit()
-                        sys.exit()
                     elif Title_Menu_Item == "Continue":
                         print("Continue")
                     elif Title_Menu_Item == "New Game":
                         print("New Game")
                     elif Title_Menu_Item == "Level Editor":
-                        print("Level Editor")
+                        mapEditor(self.screen_x, self.screen_y, pygame.display.set_mode((self.screen_x, self.screen_y)))
+                    elif Title_Menu_Item == "Options":
+                        options_menu()
 
             self.screen.blit(self.Title_Menu, self.Title_Menu_Items[Title_Menu_Item])
 
 
     def get_rect(self):
         return self.rect
+
 
 
 class Game_Menu(pygame.font.Font):
@@ -88,7 +100,6 @@ class Game_Menu(pygame.font.Font):
                 if pygame.mouse.get_pressed()[0]:
                     if Game_Menu_Item == " Quit":
                         pygame.quit()
-                        sys.exit()
                     elif Game_Menu_Item == " Options":
                         print("Options")
                         

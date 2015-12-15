@@ -1,4 +1,5 @@
 import pygame
+import os
 from pygame.locals import *
 from menu_objects import *
 
@@ -16,8 +17,8 @@ pygame.display.flip()
 Title_Menu = Title_Menu(screen)
 Game_Menu = Game_Menu(screen)
 
-Title_Menu_dif = False
-Game_Menu_dif = True
+Title_Menu_dif = True
+Game_Menu_dif = False
 running = True
 
 while running:
