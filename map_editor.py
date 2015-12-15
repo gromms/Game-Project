@@ -88,6 +88,7 @@ class Map_Editor():
 					screen.blit(sprites['G'], rects[0])
 
 			if event.type == pygame.QUIT:
+				self.screen.fill((255,255,255))
 				return True
 
 			elif event.type == pygame.MOUSEBUTTONDOWN:
@@ -142,6 +143,7 @@ class Map_Editor():
 						num += 1
 						print(elements[num])
 				elif event.key == pygame.K_ESCAPE:
+					self.screen.fill((255,255,255))
 					return 1
 			
 			pygame.display.update()

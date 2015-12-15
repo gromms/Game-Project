@@ -2,6 +2,8 @@ import pygame
 import os
 from pygame.locals import *
 from menu_objects import *
+import map_editor
+import case_handler as ch
 
 pygame.init()
 
@@ -14,23 +16,30 @@ pygame.display.set_caption("Menu_tests")
 
 pygame.display.flip()
 
-Title_Menu = Title_Menu(screen)
-Game_Menu = Game_Menu(screen)
+case = {
+    'Title Menu' : True,
+    'Game Menu' : False,
+    'Map Editor' : False
+}
 
-Title_Menu_dif = True
-Game_Menu_dif = False
+Title_Menu = Title_Menu(screen, case)
+Game_Menu = Game_Menu(screen, case)
+Map_Editor = Map_Editor(screen, screen_x, screen_y)
+
 running = True
 
-while running:
+while running:   
 
-    
-    
-
-    if Title_Menu_dif:
+    if case['Title Menu'] == True:
         Title_Menu.draw()
 
-    if Game_Menu_dif:
+    if case['Game Menu'] == True:
         Game_Menu.draw()
+
+    if case['Map Editor'] == True:
+        print('me')
+        Map_Editor.main()
+        case.update(ch.updateDict(case, 'Title Menu'))
 
     for event in pygame.event.get():
 

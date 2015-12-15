@@ -1,12 +1,15 @@
 import pygame
 import os
 from map_editor import *
+import case_handler as ch
 
 class Title_Menu(pygame.font.Font):
 
-    def __init__(self, screen):
+    def __init__(self, screen, case):
 
         self.screen = screen
+
+        self.case = case
 
         self.screen_x = 800
         self.screen_y = 600
@@ -32,13 +35,13 @@ class Title_Menu(pygame.font.Font):
         self.Title_Menu_Items = {
         "Continue": (self.Title_Menu_Item_x, self.Title_Menu_Item_y), 
         "New Game": (self.Title_Menu_Item_x, self.Title_Menu_Item_y + self.Title_Menu_Item_y_spacer), 
-        "Level Editor": (self.Title_Menu_Item_x, self.Title_Menu_Item_y + 2* self.Title_Menu_Item_y_spacer),
+        "Map Editor": (self.Title_Menu_Item_x, self.Title_Menu_Item_y + 2* self.Title_Menu_Item_y_spacer),
         "Quit": (self.Title_Menu_Item_x, self.Title_Menu_Item_y + 3* self.Title_Menu_Item_y_spacer)
         }
 
     def draw(self):
         self.screen.blit(self.Title_Title, (100,100))
-
+        #self.screen.fill((255,255,255))
         for Title_Menu_Item in self.Title_Menu_Items:
             self.Title_Menu = self.Title_Menu_Font.render(Title_Menu_Item, 1, self.red)
             if self.Title_Menu.get_rect(topleft = (self.Title_Menu_Items[Title_Menu_Item])).collidepoint(pygame.mouse.get_pos()):
@@ -50,8 +53,8 @@ class Title_Menu(pygame.font.Font):
                         print("Continue")
                     elif Title_Menu_Item == "New Game":
                         print("New Game")
-                    elif Title_Menu_Item == "Level Editor":
-                        mapEditor(self.screen_x, self.screen_y, pygame.display.set_mode((self.screen_x, self.screen_y)))
+                    elif Title_Menu_Item == "Map Editor":
+                        self.case.update(ch.updateDict(self.case, 'Map Editor'))
                     elif Title_Menu_Item == "Options":
                         options_menu()
 
@@ -65,7 +68,7 @@ class Title_Menu(pygame.font.Font):
 
 class Game_Menu(pygame.font.Font):
 
-    def __init__(self, screen):
+    def __init__(self, screen, case):
 
         self.screen = screen
 
