@@ -10,9 +10,11 @@ class Map_Handler():
 		self.sprites = {}
 
 		for i in os.listdir('./Imgs/'):
-			imageRaw = pygame.image.load('./Imgs/' + i).convert()
-			self.image = pygame.transform.scale(imageRaw, (self.tile_size, self.tile_size))
-			self.sprites[i[0]] = self.image
+			if len(str(i)) == 5 and os.path.isfile(os.path.join('./Imgs/', i)):
+				print(i)
+				imageRaw = pygame.image.load('./Imgs/' + i).convert()
+				self.image = pygame.transform.scale(imageRaw, (self.tile_size, self.tile_size))
+				self.sprites[i[0]] = self.image
 
 		return self.sprites	
 
@@ -62,6 +64,7 @@ class Map_Handler():
 					rectPos.append([rect, (j * self.tile_size, i * self.tile_size), mapList[i][j]])
 		#print('Loaded', mapName)
 		#print(rectPos)
+		f.close()
 		return mapList, rectPos
 
 	def createMap(self, screen_x, screen_y):
