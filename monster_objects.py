@@ -6,46 +6,113 @@ class Mob_Slime(pygame.sprite.Sprite):
 
     def __init__(self, screen):
 
-        self.screen_x = 800
-        self.screen_y = 600
-
         self.screen = screen
 
-        self.Slime_dir = "./Imgs/slime/"
-        self.S_d = (40, 40)
+        self.Slime_Sheet = pygame.image.load("./Imgs/slime/slime_spritesheet.png").convert_alpha()
+
+        self.slimeF_counter = 0
+
+        self.slimeF_x = 0
+
+    def draw(self, direction):
+
+        if direction == "L":
+            self.slimeF_x = 80
+            if self.slimeF_x < 120:
+                self.Slime_Sheet.set_clip(pygame.Rect(self.slimeF_x, 0, 40, 40))
+                draw_Slime = self.Slime_Sheet.subsurface(self.Slime_Sheet.get_clip())
+                self.screen.blit(draw_Slime, pygame.Rect(100, 100, 800, 600))
+                self.slimeF_counter += 1
+
+                pygame.display.update()
+
+                self.slimeF_x += 40
+
+                if self.slimeF_x == 120 and self.slimeF_counter >= 120 and self.slimeF_counter <= 240:
+                    self.Slime_Sheet.set_clip(pygame.Rect(self.slimeF_x, 0, 40, 40))
+                    draw_Slime = self.Slime_Sheet.subsurface(self.Slime_Sheet.get_clip())
+                    self.screen.blit(draw_Slime, pygame.Rect(100, 100, 800, 600))
+                    if self.slimeF_counter == 240:
+                        self.slimeF_counter = 0
+                    else:
+                        self.slimeF_counter += 1
+
+                    pygame.display.update()
+                   
+        if direction == "U":
+            self.slimeF_x = 160
+            if self.slimeF_x < 200:
+                self.Slime_Sheet.set_clip(pygame.Rect(self.slimeF_x, 0, 40, 40))
+                draw_Slime = self.Slime_Sheet.subsurface(self.Slime_Sheet.get_clip())
+                self.screen.blit(draw_Slime, pygame.Rect(100, 100, 800, 600))
+                self.slimeF_counter += 1
+
+                pygame.display.update()
+
+                self.slimeF_x += 40
+
+                if self.slimeF_x == 200 and self.slimeF_counter >= 120 and self.slimeF_counter <= 240:
+                    self.Slime_Sheet.set_clip(pygame.Rect(self.slimeF_x, 0, 40, 40))
+                    draw_Slime = self.Slime_Sheet.subsurface(self.Slime_Sheet.get_clip())
+                    self.screen.blit(draw_Slime, pygame.Rect(100, 100, 800, 600))
+                    if self.slimeF_counter == 240:
+                        self.slimeF_counter = 0
+                    else:
+                        self.slimeF_counter += 1
+
+                    pygame.display.update()
+
+        if direction == "R":
+            self.slimeF_x = 240
+            if self.slimeF_x < 280:
+                self.Slime_Sheet.set_clip(pygame.Rect(self.slimeF_x, 0, 40, 40))
+                draw_Slime = self.Slime_Sheet.subsurface(self.Slime_Sheet.get_clip())
+                self.screen.blit(draw_Slime, pygame.Rect(100, 100, 800, 600))
+                self.slimeF_counter += 1
+
+                pygame.display.update()
+
+                self.slimeF_x += 40
+
+                if self.slimeF_x == 280 and self.slimeF_counter >= 120 and self.slimeF_counter <= 240:
+                    self.Slime_Sheet.set_clip(pygame.Rect(self.slimeF_x, 0, 40, 40))
+                    draw_Slime = self.Slime_Sheet.subsurface(self.Slime_Sheet.get_clip())
+                    self.screen.blit(draw_Slime, pygame.Rect(100, 100, 800, 600))
+                    if self.slimeF_counter == 240:
+                        self.slimeF_counter = 0
+                    else:
+                        self.slimeF_counter += 1
+
+                    pygame.display.update()
+
+
+        if direction == "D":
+            self.slimeF_x = 0
+            if self.slimeF_x < 40:
+                self.Slime_Sheet.set_clip(pygame.Rect(self.slimeF_x, 0, 40, 40))
+                draw_Slime = self.Slime_Sheet.subsurface(self.Slime_Sheet.get_clip())
+                self.screen.blit(draw_Slime, pygame.Rect(100, 100, 800, 600))
+                self.slimeF_counter += 1
+
+                pygame.display.update()
+
+                self.slimeF_x += 40
+
+                if self.slimeF_x == 40 and self.slimeF_counter >= 120 and self.slimeF_counter <= 240:
+                    self.Slime_Sheet.set_clip(pygame.Rect(self.slimeF_x, 0, 40, 40))
+                    draw_Slime = self.Slime_Sheet.subsurface(self.Slime_Sheet.get_clip())
+                    self.screen.blit(draw_Slime, pygame.Rect(100, 100, 800, 600))
+                    if self.slimeF_counter == 240:
+                        self.slimeF_counter = 0
+                    else:
+                        self.slimeF_counter += 1
+
+                    pygame.display.update()
         
-        self.direction = "left" 
-
-        if self.direction == "left":
-            self.Slime_Left_1 = pygame.image.load("./Imgs/slime/s_1L_1.png")
-            self.Slime_Left_2 = pygame.image.load("./Imgs/slime/s_1L_2.png")
-
-    def loadImgs(self):
-        self.Slime_Sprites = []
-
-        for slime_img in os.listdir(self.Slime_dir):
-            if slime_img.endswith(".png"):
-                imageRaw = pygame.image.load(slime_img).convert()
-                self.image = pygame.transform.scale(imageRaw, (self.S_d))
-                self.Slime_Sprite.append(self.image)
-
-        print(self.Slime_Sprites)
-
-    def draw(self):
-        f = 0
-        if self.direction == "left":
-            if f == 0:
-                self.screen.blit((self.Slime_Left_1), self.Slime_Left_1.get_rect())
-                pygame.display.update()
-                f = 1
-            if f == 1:
-                self.screen.blit((self.Slime_Left_1), self.Slime_Left_2.get_rect())
-                pygame.display.update()
-                f = 0
-
-
 
     def get_rect(self):
         return self.rect
+
+
 
 

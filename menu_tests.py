@@ -30,11 +30,12 @@ Mob_Slime = Mob_Slime(screen)
 
 running = True
 
-while running:   
+
+while running:
+    
 
     if case['Title Menu'] == True:
         Title_Menu.draw()
-        Mob_Slime.loadImgs()
 
     if case['Game Menu'] == True:
         Game_Menu.draw()
@@ -43,8 +44,6 @@ while running:
         Map_Editor.main()
         case.update(ch.updateDict(case, 'Title Menu'))
 
-
-
     for event in pygame.event.get():
 
         if event.type == pygame.QUIT:
@@ -52,6 +51,8 @@ while running:
 
         elif event.type == pygame.KEYDOWN and event.key == K_ESCAPE:
             running = False
+
+    Mob_Slime.draw("L")
 
     pygame.display.flip()
 
