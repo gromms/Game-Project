@@ -25,6 +25,8 @@ class Title_Menu(pygame.font.Font):
         self.blue = (0, 0, 255)
         self.black = (0, 0, 0)
 
+        self.Slime = pygame.image.load("./Imgs/slime/slime_big.png")
+        pygame.transform.scale(self.Slime, (80, 80))
 
 
         self.Title_Title = self.Title_Title_Font.render("Slime Garden", 1, self.black)
@@ -41,6 +43,7 @@ class Title_Menu(pygame.font.Font):
         }
 
     def draw(self):
+        self.screen.blit(self.Slime, (450, 300))
         self.screen.blit(self.Title_Title, (100,100))
         #self.screen.fill((255,255,255))
         for Title_Menu_Item in self.Title_Menu_Items:
