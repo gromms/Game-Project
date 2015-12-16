@@ -15,7 +15,7 @@ class Map_Editor():
 	
 		self.tile_size = 40
 
-		Map_Handler = maps.Map_Handler(self.tile_size)
+		self.handler = maps.Map_Handler(self.tile_size)
 
 	def main(self):
 		self.sprites = maps.Map_Handler.loadImgs(self)
@@ -44,11 +44,11 @@ class Map_Editor():
 
 		if not mapName in mapsFound:
 			#print('Created')
-			mapList = maps.Map_Handler.createMap(self, self.screen_x, self.screen_y)
+			mapList = self.handler.createMap(self.screen_x, self.screen_y)
 			print('Created', mapList)
 		else:
 			#print('Found')
-			mapList, rectPos = maps.Map_Handler.loadMap(self, mapName)
+			mapList, rectPos = self.handler.loadMap(mapName)
 			print('Found',mapList)
 			#print(rectPos)
 		pygame.display.flip()
@@ -104,9 +104,9 @@ class Map_Editor():
 			
 			elif event.type == pygame.KEYDOWN:
 				if event.key == pygame.K_s:
-					maps.Map_Handler.saveMap(self, mapName, mapList, rectPos)
+					self.handler.saveMap(mapName, mapList, rectPos)
 				elif event.key == pygame.K_l:
-					mapList, rectPos = maps.Map_Handler.loadMap(self, mapName)
+					mapList, rectPos = self.handler.loadMap(mapName)
 				elif event.key == pygame.K_LEFT:
 					if num > 0:
 						num -= 1
