@@ -29,6 +29,8 @@ def findPath(mapList, start, finish):
 	pathFound = False
 	while len(queue) > 0:
 		i = queue.pop(0)
+		if i in checked:
+			continue
 		checked.add(i)
 		if i[0] == start[0] and i[1] == start[1]:
 			break
