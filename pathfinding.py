@@ -33,7 +33,7 @@ def findPath(mapList, start, finish):
 		if i[0] == start[0] and i[1] == start[1]:
 			break
 		for adj in findAdj(i):
-			if mapList[adj[0]][adj[1]] != 'X' and adj not in checked:
+			if mapList[adj[1]][adj[0]] != 'X' and adj not in checked:
 				queue.append(adj)
 				if adj not in lastPoint:
 					lastPoint[adj] = i
