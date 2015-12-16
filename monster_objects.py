@@ -8,20 +8,26 @@ class Mob_Slime(pygame.sprite.Sprite):
 
         self.screen = screen
 
+        self.screen_x = 800
+        self.screen_y = 600
+
         self.Slime_Sheet = pygame.image.load("./Imgs/slime/slime_spritesheet.png").convert_alpha()
 
         self.slimeF_counter = 0
 
         self.slimeF_x = 0
 
-    def draw(self, direction):
+        self.Slime_speed = 3
+
+    def draw(self, direction, x, y, move_len=None):
 
         if direction == "L":
             self.slimeF_x = 80
             if self.slimeF_x < 120:
                 self.Slime_Sheet.set_clip(pygame.Rect(self.slimeF_x, 0, 40, 40))
                 draw_Slime = self.Slime_Sheet.subsurface(self.Slime_Sheet.get_clip())
-                self.screen.blit(draw_Slime, pygame.Rect(100, 100, 800, 600))
+                self.screen.blit(draw_Slime, pygame.Rect(x, y, 800, 600))
+                pygame.display.update()
                 self.slimeF_counter += 1
 
                 pygame.display.update()
@@ -31,7 +37,10 @@ class Mob_Slime(pygame.sprite.Sprite):
                 if self.slimeF_x == 120 and self.slimeF_counter >= 120 and self.slimeF_counter <= 240:
                     self.Slime_Sheet.set_clip(pygame.Rect(self.slimeF_x, 0, 40, 40))
                     draw_Slime = self.Slime_Sheet.subsurface(self.Slime_Sheet.get_clip())
-                    self.screen.blit(draw_Slime, pygame.Rect(100, 100, 800, 600))
+                    for i in range(300):
+
+                        self.screen.blit(draw_Slime, pygame.Rect(x+i, y, 800, 600))
+                        pygame.display.update()
                     if self.slimeF_counter == 240:
                         self.slimeF_counter = 0
                     else:
@@ -107,8 +116,7 @@ class Mob_Slime(pygame.sprite.Sprite):
                     else:
                         self.slimeF_counter += 1
 
-                    pygame.display.update()
-        
+                    pygame.display.update()      
 
     def get_rect(self):
         return self.rect

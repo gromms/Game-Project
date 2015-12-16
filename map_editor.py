@@ -1,9 +1,7 @@
 import pygame
 import os
 import case_handler as ch
-
-#
-#pygame.init()
+import maps
 
 class Map_Editor():
 
@@ -17,35 +15,19 @@ class Map_Editor():
 	
 		self.tile_size = 40
 
-	def loadImgs(self):
-		self.sprites = {}
-
-		for i in os.listdir('./Imgs/'):
-			imageRaw = pygame.image.load('./Imgs/' + i).convert()
-			self.image = pygame.transform.scale(imageRaw, (self.tile_size, self.tile_size))
-			self.sprites[i[0]] = self.image
-
-		return self.sprites		
+		self.handler = maps.Map_Handler(self.tile_size)
 
 	def main(self):
-		#screen_x
-		#screen_y
+		self.sprites = maps.Map_Handler.loadImgs(self)
 
-		#tile_size = 40
-
-		#screen = pygame.display.set_mode((screen_x, screen_y))
-		#screen.fill((255, 255, 255))
-
-
-		self.sprites = self.loadImgs()
-		#print(image.get_rect())
+		print(self.sprites)
 
 		rectPos = []
 		mapList = []
 		color_dict = {}
 
 		elements = ['X', 'S', 'O', 'G']
-		self.images = {'G' : self.image}
+		#self.images = {'G' : self.image}
 		num = 0
 
 		colors = [['red', (255, 0, 0)], ['green', (0, 255, 0)], ['blue', (0, 0, 255)], ['black', (0, 0, 0, 255)]]
@@ -53,12 +35,22 @@ class Map_Editor():
 		for color in colors:
 			color_dict[color[0]] = color[1]
 
-		for i in range(0, self.screen_y // self.tile_size):
-			mapList.append([])
-			for j in range(0, self.screen_x // self.tile_size):
-				mapList[i].append('_')
-		#print(mapList)
+		mapName = input('Map name: ')
+		mapName += '.txt'
+		print(mapName)
+		mapsFound = []
+		for m in os.listdir('./Maps/'):
+			mapsFound.append(m)
 
+		if not mapName in mapsFound:
+			#print('Created')
+			mapList = self.handler.createMap(self.screen_x, self.screen_y)
+			print('Created', mapList)
+		else:
+			#print('Found')
+			mapList, rectPos = self.handler.loadMap(mapName)
+			print('Found',mapList)
+			#print(rectPos)
 		pygame.display.flip()
 
 		while True:
@@ -85,7 +77,7 @@ class Map_Editor():
 				elif rects[2] == 'O':
 					pygame.draw.rect(self.screen, color_dict['green'], rects[0])
 				elif rects[2] == 'G':
-					screen.blit(sprites['G'], rects[0])
+					self.screen.blit(self.sprites['G'], rects[0])
 
 			if event.type == pygame.QUIT:
 				self.screen.fill((255,255,255))
@@ -104,47 +96,25 @@ class Map_Editor():
 					if not inList:
 						rectPos.append([rect, (tile_pos_x, tile_pos_y), element])
 
-					#mapList[tile_pos_y][tile_pos_x] = 'X'
-					#print(rectPos)
 				elif pygame.mouse.get_pressed()[2]:
 					for i in range(0, len(rectPos)):
 						if rectPos[i][1] == (tile_pos_x, tile_pos_y):
 							rectPos.remove(rectPos[i])
 							break
-					#print(rectPos)
 			
 			elif event.type == pygame.KEYDOWN:
 				if event.key == pygame.K_s:
-					f = open('mapName.txt', 'w')
-					for y in range(0, len(mapList)):
-						for x in range(0, len(mapList[y])):
-							default = False
-							for i in range(0, len(rectPos)):
-								#print(rectPos[i][1])
-								if (x, y) == rectPos[i][1]:
-									#rint('X')
-									f.write(rectPos[i][2])
-									default = True
-									break
-							if not default:
-								f.write('_')
-							#f.write(mapList[y][x])
-						f.write('\n')
-					print('Map saved!')
-					f.close()
-				#f = open('map_name.txt')
-				#print(f.readlines())
+					self.handler.saveMap(mapName, mapList, rectPos)
+				elif event.key == pygame.K_l:
+					mapList, rectPos = self.handler.loadMap(mapName)
 				elif event.key == pygame.K_LEFT:
 					if num > 0:
 						num -= 1
-						#print(elements[num])
 				elif event.key == pygame.K_RIGHT:
 					if num < len(elements) - 1:
 						num += 1
-						#print(elements[num])
 				elif event.key == pygame.K_ESCAPE:
 					self.screen.fill((255,255,255))
 					return 1
 			
 			pygame.display.update()
-			#print(tile)

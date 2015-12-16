@@ -15,6 +15,8 @@ screen = pygame.display.set_mode((screen_x, screen_y))
 screen.fill((0,255,255))
 pygame.display.set_caption("Menu_tests")
 
+clock = pygame.time.Clock()
+
 pygame.display.flip()
 
 case = {
@@ -32,7 +34,9 @@ running = True
 
 
 while running:
+    clock.tick(60)
     
+    screen.fill((255,255,255))
 
     if case['Title Menu'] == True:
         Title_Menu.draw()
@@ -41,9 +45,9 @@ while running:
         Game_Menu.draw()
 
     if case['Map Editor'] == True:
-        #print('me')
         Map_Editor.main()
         case.update(ch.updateDict(case, 'Title Menu'))
+        Mob_Slime.draw("L")
 
     for event in pygame.event.get():
 
@@ -53,7 +57,7 @@ while running:
         elif event.type == pygame.KEYDOWN and event.key == K_ESCAPE:
             running = False
 
-    Mob_Slime.draw("L")
+    Mob_Slime.draw("L", 50, 50)
 
     pygame.display.flip()
 
