@@ -3,6 +3,7 @@ import os
 import case_handler as ch
 import maps
 import monster_objects as mobs
+import character_objects as chars
 import pathfinding as pathf
 
 class Game_Core():
@@ -12,12 +13,13 @@ class Game_Core():
 		self.screen_x = screen_x
 		self.screen_y = screen_y
 
-		pygame.display.set_caption('Game')
+		#pygame.display.set_caption('')
 	
 		self.tile_size = 40
 
 		self.handler = maps.Map_Handler(self.tile_size)
 		self.slime = mobs.Mob_Slime(screen)
+		self.character = chars.Main_Char(screen)
 
 	def main(self):
 		#print('GAME!')
@@ -31,8 +33,9 @@ class Game_Core():
 
 		pygame.display.flip()
 
-		playerPosX = 2
-		playerPosY = 2
+		playerPosX = 1
+		playerPosY = 1
+		playerDir = 'D'
 
 		slimePosX = 10
 		slimePosY = 10
@@ -45,7 +48,7 @@ class Game_Core():
 			color_dict[color[0]] = color[1]
 
 		while True:
-			#limit = clock.tick(120)
+			limit = clock.tick(150)
 			#print(limit)
 			self.screen.fill((255, 255, 255))
 			mouse_posx, mouse_posy = pygame.mouse.get_pos()
@@ -73,6 +76,7 @@ class Game_Core():
 					self.screen.blit(self.sprites['G'], rects[0])
 			#print(slimePosX, slimePosY)
 			self.slime.draw(slimeDir, slimePosX, slimePosY)
+			self.character.draw(playerDir, playerPosX, playerPosY)
 
 			if event.type == pygame.QUIT:
 				self.screen.fill((255,255,255))
@@ -84,9 +88,9 @@ class Game_Core():
 					if mapList[tile_pos_y][tile_pos_x] != 'X':
 						#for i in mapList:
 						#	print(i)
-						path = pathf.pathfinding(mapList, (slimePosX, slimePosY), (tile_pos_x, tile_pos_y))
+						path = pathf.pathfinding(mapList, (playerPosX, playerPosY), (tile_pos_x, tile_pos_y))
 						#print(len(path), path)
-						for step in range(1, len(path)):
+						'''for step in range(1, len(path)):
 							if step < len(path):
 								print('Current pos:', slimePosX, slimePosY, ';', 'Next step:',path[step])
 								if slimePosX > path[step][0]:
@@ -104,11 +108,31 @@ class Game_Core():
 								elif slimePosY < path[step][1]:
 									slimeDir = 'D'
 									slimePosY += 1
-									print(slimeDir)								
+									print(slimeDir)'''
+						for step in range(1, len(path)):
+							if step < len(path):
+								#print('Current pos:', playerPosX, playerPosY, ';', 'Next step:',path[step])
+								if playerPosX > path[step][0]:
+									playerDir = 'L'
+									playerPosX -= 1
+									print(playerDir)
+								elif playerPosX < path[step][0]:
+									playerDir = 'R'
+									playerPosX += 1
+									print(playerDir)
+								elif playerPosY > path[step][1]:
+									playerDir = 'U'
+									playerPosY -= 1
+									print(playerDir)
+								elif playerPosY < path[step][1]:
+									playerDir = 'D'
+									playerPosY += 1
+									print(playerDir)										
 
-							self.slime.draw(slimeDir, slimePosX, slimePosY)
+							#self.slime.draw(slimeDir, slimePosX, slimePosY)
+							self.character.draw(playerDir, playerPosX, playerPosY)
 							pygame.display.update()
-							pygame.time.wait(50)
+							pygame.time.delay(20)
 
 			elif event.type == pygame.KEYDOWN:
 				if event.key == pygame.K_ESCAPE:

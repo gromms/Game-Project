@@ -18,7 +18,7 @@ class Title_Menu(pygame.font.Font):
         self.screen = pygame.display.set_mode((self.screen_x, self.screen_y))
         self.screen.fill((255,255,255))
 
-        self.Title_Title_Font = pygame.font.Font("menu_font.ttf", 60)
+        self.Title_Title_Font = pygame.font.Font("menu_font.ttf", 50)
         self.Title_Menu_Font = pygame.font.Font("menu_font.ttf", 30)
 
         self.red = (255, 0 , 0)
@@ -27,7 +27,7 @@ class Title_Menu(pygame.font.Font):
 
 
 
-        self.Title_Title = self.Title_Title_Font.render("menu test", 1, self.black)
+        self.Title_Title = self.Title_Title_Font.render("Slime Garden", 1, self.black)
 
         self.Title_Menu_Item_x = 100
         self.Title_Menu_Item_y = 250
