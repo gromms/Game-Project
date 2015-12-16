@@ -21,7 +21,10 @@ class Map_Handler():
 	def saveMap(self, mapName, mapList, rectPos):
 		#mapName += '.txt'
 		#print(mapName)
-		f = open('./Maps/'+mapName, 'w')
+		print('Saving')
+		print(mapList)
+		print(rectPos)
+		f = open(os.path.join('./Maps/', mapName), 'w')
 		print('Saving:', mapList)
 		for y in range(0, len(mapList)):
 			for x in range(0, len(mapList[y])):
@@ -35,17 +38,19 @@ class Map_Handler():
 					f.write('_')
 			f.write('\n')
 		print('Map saved!')
+		#print(f.readlines())
 		f.close()
 
 	def loadMap(self, mapName):
 		#mapName += '.txt'
 		#print(mapName)
 
-		f = open('./Maps/'+mapName, 'r')
+		f = open(os.path.join('./Maps/', mapName), 'r')
+		f.seek(0,0)
 		mapList = []
 		while True:
 			line = f.readline().split()
-			#print(line)
+			print(line)
 			if not line:
 				break
 			mapList.append([])
@@ -65,6 +70,9 @@ class Map_Handler():
 		#print('Loaded', mapName)
 		#print(rectPos)
 		f.close()
+		print('Loaded')
+		print(mapList)
+		print(rectPos)
 		return mapList, rectPos
 
 	def createMap(self, screen_x, screen_y):
