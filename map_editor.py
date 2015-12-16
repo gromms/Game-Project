@@ -11,7 +11,7 @@ class Map_Editor():
 		self.screen_x = screen_x
 		self.screen_y = screen_y
 
-		pygame.display.set_caption('Map Editor')
+		#pygame.display.set_caption('Map Editor')
 	
 		self.tile_size = 40
 

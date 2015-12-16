@@ -25,6 +25,7 @@ class Mob_Slime(pygame.sprite.Sprite):
         #limit = self.clock.tick(60)
         x = x*40
         y = y*40
+
         if direction == "L":
             self.slimeF_x = 80
             if self.slimeF_x < 120:
