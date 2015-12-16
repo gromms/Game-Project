@@ -80,9 +80,9 @@ class Map_Handler():
 		mapList = []
 		rectPos = []
 
-		for i in range(0, self.screen_y // self.tile_size):
+		for i in range(0, screen_y // self.tile_size):
 			mapList.append([])
-			for j in range(0, self.screen_x // self.tile_size):
+			for j in range(0, screen_x // self.tile_size):
 				mapList[i].append('_')
 
 		print(mapList)
