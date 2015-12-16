@@ -1,7 +1,7 @@
 def findLoc(mapList, a):
 	for y in range(0, len(mapList)):
 		for x in range(0, len(mapList[y][0])):
-			if mapList[y][0][x] == a:
+			if mapList[y][x] == a:
 				return x, y
 	return None
 
@@ -33,7 +33,7 @@ def findPath(mapList, start, finish):
 		if i[0] == start[0] and i[1] == start[1]:
 			break
 		for adj in findAdj(i):
-			if mapList[adj[0]][0][adj[1]] != 'X' and adj not in checked:
+			if mapList[adj[0]][adj[1]] != 'X' and adj not in checked:
 				queue.append(adj)
 				if adj not in lastPoint:
 					lastPoint[adj] = i

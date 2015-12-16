@@ -54,7 +54,7 @@ class Title_Menu(pygame.font.Font):
                     elif Title_Menu_Item == "Continue":
                         print("Continue")
                     elif Title_Menu_Item == "New Game":
-                        print("New Game")
+                        self.case.update(ch.updateDict(self.case, 'Game Core'))
                     elif Title_Menu_Item == "Map Editor":
                         self.case.update(ch.updateDict(self.case, 'Map Editor'))
                     elif Title_Menu_Item == "Options":

@@ -5,6 +5,7 @@ from menu_objects import *
 import map_editor
 import case_handler as ch
 from monster_objects import *
+from game_core import *
 
 pygame.init()
 
@@ -22,13 +23,14 @@ pygame.display.flip()
 case = {
     'Title Menu' : True,
     'Game Menu' : False,
-    'Map Editor' : False
+    'Map Editor' : False,
+    'Game Core' : False
 }
 
 Title_Menu = Title_Menu(screen, case)
 Game_Menu = Game_Menu(screen, case)
 Map_Editor = Map_Editor(screen, screen_x, screen_y)
-Mob_Slime = Mob_Slime(screen)
+Game_Core = Game_Core(screen, screen_x, screen_y)
 
 running = True
 
@@ -37,6 +39,8 @@ while running:
     clock.tick(60)
     
     screen.fill((255,255,255))
+
+    #print(ch.currentCase(case))
 
     if case['Title Menu'] == True:
         Title_Menu.draw()
@@ -47,7 +51,11 @@ while running:
     if case['Map Editor'] == True:
         Map_Editor.main()
         case.update(ch.updateDict(case, 'Title Menu'))
-        Mob_Slime.draw("L")
+        #Mob_Slime.draw("L")
+
+    if case['Game Core'] == True:
+        Game_Core.main()
+        case.update(ch.updateDict(case, 'Title Menu'))
 
     for event in pygame.event.get():
 
@@ -56,8 +64,6 @@ while running:
 
         elif event.type == pygame.KEYDOWN and event.key == K_ESCAPE:
             running = False
-
-    Mob_Slime.draw("L", 50, 50)
 
     pygame.display.flip()
 

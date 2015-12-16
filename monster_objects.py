@@ -19,7 +19,7 @@ class Mob_Slime(pygame.sprite.Sprite):
 
         self.Slime_speed = 3
 
-    def draw(self, direction, x, y, move_len=None):
+    def draw(self, direction, x, y):
 
         if direction == "L":
             self.slimeF_x = 80
@@ -47,6 +47,7 @@ class Mob_Slime(pygame.sprite.Sprite):
                         self.slimeF_counter += 1
 
                     pygame.display.update()
+
                    
         if direction == "U":
             self.slimeF_x = 160
@@ -120,7 +121,3 @@ class Mob_Slime(pygame.sprite.Sprite):
 
     def get_rect(self):
         return self.rect
-
-
-
-
