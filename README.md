@@ -1,8 +1,8 @@
 # Game-Project
 
 ## Mäng "Slime Garden" point-and-click mäng.
-Mängus on võimalik liikuda ringi kasutades paremat hiireklikki- tegelane liigub sinna kuhu vajutad.
-Mängus on ka sõbralikud limakollid.
+Mängus on võimalik liikuda ringi kasutades vasakut hiireklikki- tegelane liigub sinna kuhu vajutad.
+Mängus on ka sõbralik limakoll.
 
 ## Võimalused
 Mängus on võimalik ka kasutada map editori, millega saab luua ise alasid, mille peal põhimäng toimub. Avades map editori tuleb konsooli sisestada muudetava mapi nimi ilma faililaiendita.
