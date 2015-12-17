@@ -20,7 +20,7 @@ class Map_Editor():
 	def main(self):
 		self.sprites = maps.Map_Handler.loadImgs(self)
 
-		print(self.sprites)
+		#print(self.sprites)
 
 		rectPos = []
 		mapList = []
@@ -37,7 +37,7 @@ class Map_Editor():
 
 		mapName = input('Map name: ')
 		mapName += '.txt'
-		print(mapName)
+		#print(mapName)
 		mapsFound = []
 		for m in os.listdir('./Maps/'):
 			mapsFound.append(m)

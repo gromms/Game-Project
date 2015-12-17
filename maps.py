@@ -11,19 +11,20 @@ class Map_Handler():
 
 		for i in os.listdir('./Imgs/'):
 			if len(str(i)) == 5 and os.path.isfile(os.path.join('./Imgs/', i)):
-				print(i)
+				#print(i)
 				imageRaw = pygame.image.load('./Imgs/' + i).convert()
 				self.image = pygame.transform.scale(imageRaw, (self.tile_size, self.tile_size))
 				self.sprites[i[0]] = self.image
 
+		print('Images loaded.')
 		return self.sprites	
 
 	def saveMap(self, mapName, mapList, rectPos):
 		#mapName += '.txt'
 		#print(mapName)
 		print('Saving')
-		print(mapList)
-		print(rectPos)
+		#print(mapList)
+		#print(rectPos)
 		f = open(os.path.join('./Maps/', mapName), 'w')
 		print('Saving:', mapList)
 		for y in range(0, len(mapList)):
@@ -50,7 +51,7 @@ class Map_Handler():
 		mapList = []
 		while True:
 			line = f.readline().split()
-			print(line)
+			#print(line)
 			if not line:
 				break
 			mapList.append([])
@@ -70,9 +71,9 @@ class Map_Handler():
 		#print('Loaded', mapName)
 		#print(rectPos)
 		f.close()
-		print('Loaded')
-		print(mapList)
-		print(rectPos)
+		print('Map loaded')
+		#print(mapList)
+		#print(rectPos)
 		return mapList, rectPos
 
 	def createMap(self, screen_x, screen_y):
