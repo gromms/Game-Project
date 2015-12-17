@@ -89,13 +89,37 @@ class Game_Core():
 						#for i in mapList:
 						#	print(i)
 						path = pathf.pathfinding(mapList, (playerPosX, playerPosY), (tile_pos_x, tile_pos_y))
+<<<<<<< HEAD
 
+=======
+						#print(len(path), path)
+						'''for step in range(1, len(path)):
+							if step < len(path):
+								print('Current pos:', slimePosX, slimePosY, ';', 'Next step:',path[step])
+								if slimePosX > path[step][0]:
+									slimeDir = 'L'
+									slimePosX -= 1
+									print(slimeDir)
+								elif slimePosX < path[step][0]:
+									slimeDir = 'R'
+									slimePosX += 1
+									print(slimeDir)
+								elif slimePosY > path[step][1]:
+									slimeDir = 'U'
+									slimePosY -= 1
+									print(slimeDir)
+								elif slimePosY < path[step][1]:
+									slimeDir = 'D'
+									slimePosY += 1
+									print(slimeDir)'''
+>>>>>>> 81af2e7d818a22be0b40060baae8c8fb44c9e812
 						for step in range(1, len(path)):
 							if step < len(path):
 								#print('Current pos:', playerPosX, playerPosY, ';', 'Next step:',path[step])
 								if playerPosX > path[step][0]:
 									playerDir = 'L'
 									playerPosX -= 1
+<<<<<<< HEAD
 									#print(playerDir)
 								elif playerPosX < path[step][0]:
 									playerDir = 'R'
@@ -110,6 +134,23 @@ class Game_Core():
 									playerPosY += 1
 									#print(playerDir)										
 									
+=======
+									print(playerDir)
+								elif playerPosX < path[step][0]:
+									playerDir = 'R'
+									playerPosX += 1
+									print(playerDir)
+								elif playerPosY > path[step][1]:
+									playerDir = 'U'
+									playerPosY -= 1
+									print(playerDir)
+								elif playerPosY < path[step][1]:
+									playerDir = 'D'
+									playerPosY += 1
+									print(playerDir)										
+
+							#self.slime.draw(slimeDir, slimePosX, slimePosY)
+>>>>>>> 81af2e7d818a22be0b40060baae8c8fb44c9e812
 							self.character.draw(playerDir, playerPosX, playerPosY)
 							pygame.display.update()
 							pygame.time.delay(20)
