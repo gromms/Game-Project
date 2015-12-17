@@ -1,0 +1,13 @@
+﻿Mäng "Slime Garden" point-and-click mäng.
+Mängus on võimalik liikuda ringi kasutades paremat hiireklikki- tegelane liigub sinna kuhu vajutad.
+Mängus on ka sõbralikud limakollid.
+
+Mängus on võimalik ka kasutada map editori, millega saab luua ise alasid, mille peal põhimäng toimub.
+Map editoris saab paigutada map'i elemente kasutades vasakut hiireklikki ning kustudada parema hiireklikiga.
+Elemente saab vahetada parema ja vasaku nooleklahviga.
+
+
+Menüüde fondi "Press Start 2P", nimetatud ümber "menu_font"'iks saime aadressilt http://www.fontspace.com/codeman38/press-start-2p
+See font on litsenseeritud "SIL Open Font License" litsensiga.
+
+Mängu autorid on Gromet Spaal ja Martin Maidla.
